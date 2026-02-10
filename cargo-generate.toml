@@ -1,6 +1,7 @@
 [template]
 cargo_generate_version = ">=0.10.0"
 description = "A starter template for better-auth-rs projects"
+exclude = ["cargo-generate.toml"]
 
 [placeholders.database]
 type = "string"
@@ -9,7 +10,7 @@ choices = ["memory", "postgres"]
 default = "memory"
 
 [conditional.'database == "memory"']
-ignore = [".env.example", "{{project-name}}/migrations/**"]
+ignore = [".env.example"]
 
 [conditional.'database == "postgres"'.placeholders.database_url]
 type = "string"

@@ -1,38 +1,30 @@
-# better-auth-template
+# {{project-name}}
 
-A [cargo-generate](https://github.com/cargo-generate/cargo-generate) template for [better-auth-rs](https://github.com/better-auth-rs/better-auth-rs) projects.
+Built with [better-auth-rs](https://github.com/better-auth-rs/better-auth-rs).
 
-## Usage
-
-```bash
-cargo generate better-auth-rs/better-auth-template
-```
-
-You will be prompted to choose:
-
-- **Database adapter**: `memory` (in-memory, for dev/prototyping) or `postgres` (PostgreSQL via SQLx)
-
-### PostgreSQL
-
-If you chose `postgres`, create a `.env` file from the example and run migrations before starting:
-
+## Getting Started
+{% if database == "postgres" %}
 ```bash
 cp .env.example .env
 # edit .env with your database URL
 cargo run
 ```
-
-### Memory
-
-If you chose `memory`, just run:
-
+{% else %}
 ```bash
 cargo run
 ```
+{% endif %}
+The server starts at `http://localhost:3000`.
 
-## What's Included
+## Auth Endpoints
 
-- Axum web server on port 3000
-- Email/password authentication (`/auth/sign-up/email`, `/auth/sign-in/email`)
-- Session management (`/auth/get-session`, `/auth/sign-out`, `/auth/list-sessions`)
-- Password management (`/auth/forget-password`, `/auth/reset-password`, `/auth/change-password`)
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/auth/sign-up/email` | Sign up with email/password |
+| POST | `/auth/sign-in/email` | Sign in with email/password |
+| GET | `/auth/get-session` | Get current session |
+| POST | `/auth/sign-out` | Sign out |
+| GET | `/auth/list-sessions` | List all sessions |
+| POST | `/auth/forget-password` | Request password reset |
+| POST | `/auth/reset-password` | Reset password with token |
+| POST | `/auth/change-password` | Change password (auth required) |

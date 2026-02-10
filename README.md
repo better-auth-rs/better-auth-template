@@ -1,22 +1,21 @@
-# {{project-name}}
+# better-auth-template
 
-Built with [better-auth-rs](https://github.com/better-auth-rs/better-auth-rs).
+A [cargo-generate](https://github.com/cargo-generate/cargo-generate) template for [better-auth-rs](https://github.com/better-auth-rs/better-auth-rs) projects.
 
-## Getting Started
-{% if database == "postgres" %}
+## Usage
+
 ```bash
-cp .env.example .env
-# edit .env with your database URL
-cargo run
+cargo generate better-auth-rs/better-auth-template
 ```
-{% else %}
-```bash
-cargo run
-```
-{% endif %}
-The server starts at `http://localhost:3000`.
 
-## Auth Endpoints
+You will be prompted to choose a database adapter:
+
+| Adapter | Description |
+|---------|-------------|
+| `memory` | In-memory (default), for development and prototyping |
+| `postgres` | PostgreSQL via SQLx, for production |
+
+## Generated Endpoints
 
 | Method | Path | Description |
 |--------|------|-------------|

@@ -1,7 +1,7 @@
 [template]
 cargo_generate_version = ">=0.10.0"
 description = "A starter template for better-auth-rs projects"
-exclude = ["cargo-generate.toml"]
+ignore = ["README.md"]
 
 [placeholders.database]
 type = "string"

@@ -1,0 +1,17 @@
+[template]
+cargo_generate_version = ">=0.10.0"
+description = "A starter template for better-auth-rs projects"
+
+[placeholders.database]
+type = "string"
+prompt = "Which database adapter?"
+choices = ["memory", "postgres"]
+default = "memory"
+
+[conditional.'database == "memory"']
+ignore = [".env.example", "{{project-name}}/migrations/**"]
+
+[conditional.'database == "postgres"'.placeholders.database_url]
+type = "string"
+prompt = "PostgreSQL connection URL?"
+default = "postgresql://better_auth:password@localhost:5432/better_auth"
